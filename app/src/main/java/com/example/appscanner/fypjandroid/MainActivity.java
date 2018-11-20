@@ -1,9 +1,14 @@
 package com.example.appscanner.fypjandroid;
 
+import android.content.Intent;
+import android.support.design.button.MaterialButton;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -18,6 +23,7 @@ import com.example.appscanner.fypjandroid.Adapter.AppAdapter;
 import com.example.appscanner.fypjandroid.Adapter.PermissionExistAdapter;
 import com.example.appscanner.fypjandroid.Constant.Constant;
 import com.example.appscanner.fypjandroid.Model.App;
+import com.example.appscanner.fypjandroid.Model.Permission;
 import com.example.appscanner.fypjandroid.Model.PermissionExist;
 
 import org.json.JSONArray;
@@ -35,18 +41,24 @@ public class MainActivity extends AppCompatActivity {
     //the recyclerview
     ListView listView;
     ListView listView1;
+    Button permissionBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         listView = (ListView) findViewById(R.id.listView);
 
         listView1 = (ListView) findViewById(R.id.secondList);
 
+
         productList = new ArrayList<>();
         permExistList = new ArrayList<>();
+
 
         Bundle bn = getIntent().getExtras();
         String id = bn.getString("appid");
@@ -56,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
         Log.e("ID", id);
         loadProducts(id);
         loadPermExist(id);
+
+
     }
+
 
     private void loadPermExist(String id){
 

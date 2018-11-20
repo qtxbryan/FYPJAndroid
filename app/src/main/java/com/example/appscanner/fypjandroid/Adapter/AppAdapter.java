@@ -2,6 +2,7 @@ package com.example.appscanner.fypjandroid.Adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.appscanner.fypjandroid.Model.App;
+import com.example.appscanner.fypjandroid.Model.Permission;
 import com.example.appscanner.fypjandroid.R;
 
 import org.w3c.dom.Text;
@@ -42,6 +45,7 @@ public class AppAdapter extends ArrayAdapter<App> {
         TextView textViewUrl = listViewItem.findViewById(R.id.textAppUrl);
         TextView textViewId = listViewItem.findViewById(R.id.textAppId);
         TextView textViewDev = listViewItem.findViewById(R.id.textAppDevId);
+
 
         App app = appList.get(position);
 

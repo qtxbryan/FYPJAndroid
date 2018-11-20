@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -40,6 +41,7 @@ public class PermissionAdapter extends ArrayAdapter<Permission> {
         TextView textViewId = listViewItem.findViewById(R.id.textViewPermId);
         TextView textViewProtectLevel = listViewItem.findViewById(R.id.textViewProtectLevel);
 
+
         Permission perm = permList.get(position);
 
         textViewPermName.setText(perm.getName());
@@ -69,5 +71,7 @@ public class PermissionAdapter extends ArrayAdapter<Permission> {
         return listViewItem;
 
     }
+
+
 }
 

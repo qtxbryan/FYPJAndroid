@@ -1,12 +1,8 @@
 package com.example.appscanner.fypjandroid;
 
-
-import android.content.ClipData;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -17,11 +13,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appscanner.fypjandroid.Adapter.MethodAdapter;
 import com.example.appscanner.fypjandroid.Adapter.PermissionAdapter;
 import com.example.appscanner.fypjandroid.Constant.Constant;
 import com.example.appscanner.fypjandroid.Model.Method;
 import com.example.appscanner.fypjandroid.Model.Permission;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,28 +26,26 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PermissionActivity extends AppCompatActivity {
+public class MethodActivity extends AppCompatActivity {
 
-    List<Permission> permList;
+
+    List<Method> methodList;
     ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_permission);
+        setContentView(R.layout.activity_method);
 
-        listView = (ListView) findViewById(R.id.listViewPermission);
+        listView = findViewById(R.id.methodList);
 
-        permList = new ArrayList<>();
+        methodList = new ArrayList<>();
 
-
-        loadPermission();
 
     }
 
-    private void loadPermission(){
-
-        String link = Constant.URL_READ_PERM;
+    private void loadMethod(String id){
+        String link = Constant.URL_READ_METHOD+id;
 
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -72,26 +66,15 @@ public class PermissionActivity extends AppCompatActivity {
 
                                 JSONObject detailObject = detailArray.getJSONObject(i);
 
-                                Permission permExist = new Permission(detailObject.getString("perm_id"),
-                                        detailObject.getString("name"),
-                                        detailObject.getString("protect_id"));
+                                Method method = new Method(
+                                        detailObject.getString("name"));
 
-                                permList.add(permExist);
+                                methodList.add(method);
                             }
 
-                            PermissionAdapter adapter = new PermissionAdapter(permList, getApplicationContext());
+                            MethodAdapter adapter = new MethodAdapter(methodList, getApplicationContext());
 
                             listView.setAdapter(adapter);
-
-                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                                    String chosen = (String) adapterView.getItemAtPosition(position);
-                                    Intent intent = new Intent(PermissionActivity.this, MethodActivity.class);
-                                    intent.putExtra("chosen", chosen);
-                                    startActivity(intent);
-                                }
-                            });
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -107,6 +90,6 @@ public class PermissionActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         requestQueue.add(stringRequest);
+
     }
 }
-
