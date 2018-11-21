@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     //the recyclerview
     ListView listView;
     ListView listView1;
-    Button permissionBtn;
 
 
     @Override
@@ -60,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         permExistList = new ArrayList<>();
 
 
+
         Bundle bn = getIntent().getExtras();
         String id = bn.getString("appid");
 
@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
     private void loadPermExist(String id){

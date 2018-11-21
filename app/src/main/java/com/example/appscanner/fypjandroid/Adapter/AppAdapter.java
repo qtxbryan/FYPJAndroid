@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.appscanner.fypjandroid.Model.App;
 import com.example.appscanner.fypjandroid.Model.Permission;
+import com.example.appscanner.fypjandroid.PermissionActivity;
 import com.example.appscanner.fypjandroid.R;
 
 import org.w3c.dom.Text;
@@ -46,6 +47,14 @@ public class AppAdapter extends ArrayAdapter<App> {
         TextView textViewId = listViewItem.findViewById(R.id.textAppId);
         TextView textViewDev = listViewItem.findViewById(R.id.textAppDevId);
 
+        Button permissionBtn = listViewItem.findViewById(R.id.permissionBtn);
+        permissionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCtx.startActivity(new Intent(mCtx, PermissionActivity.class));
+
+            }
+        });
 
         App app = appList.get(position);
 
