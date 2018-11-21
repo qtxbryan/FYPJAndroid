@@ -2,9 +2,11 @@ package com.example.appscanner.fypjandroid.Adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.appscanner.fypjandroid.MethodActivity;
 import com.example.appscanner.fypjandroid.Model.Permission;
 import com.example.appscanner.fypjandroid.R;
 
@@ -42,7 +45,20 @@ public class PermissionAdapter extends ArrayAdapter<Permission> {
         TextView textViewProtectLevel = listViewItem.findViewById(R.id.textViewProtectLevel);
 
 
-        Permission perm = permList.get(position);
+
+        final Permission perm = permList.get(position);
+        final String permId = perm.getPerm_id();
+
+        listViewItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mCtx, MethodActivity.class);
+                intent.putExtra("perm_id", permId);
+                Log.i("PERM ID IS ", permId);
+                mCtx.startActivity(intent);
+
+            }
+        });
 
         textViewPermName.setText(perm.getName());
         textViewId.setText(perm.getPerm_id());

@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="120dp"
+        android:maxHeight = "176dp"
         android:padding="8dp">
 
         <Button

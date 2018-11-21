@@ -41,7 +41,9 @@ public class MethodActivity extends AppCompatActivity {
 
         methodList = new ArrayList<>();
 
-
+        Bundle bn = getIntent().getExtras();
+        String id = bn.getString("perm_id");
+        loadMethod(id);
     }
 
     private void loadMethod(String id){

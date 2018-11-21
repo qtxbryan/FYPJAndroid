@@ -83,15 +83,7 @@ public class PermissionActivity extends AppCompatActivity {
 
                             listView.setAdapter(adapter);
 
-                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                                    String chosen = (String) adapterView.getItemAtPosition(position);
-                                    Intent intent = new Intent(PermissionActivity.this, MethodActivity.class);
-                                    intent.putExtra("chosen", chosen);
-                                    startActivity(intent);
-                                }
-                            });
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

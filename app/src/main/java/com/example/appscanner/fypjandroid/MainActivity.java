@@ -54,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
         listView1 = (ListView) findViewById(R.id.secondList);
 
+        Button perm_declare = findViewById(R.id.permissonDeclare);
+
+        perm_declare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PermissionActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         productList = new ArrayList<>();
         permExistList = new ArrayList<>();
@@ -100,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
                                 PermissionExist permExist = new PermissionExist(detailObject.getString("app_id"),
                                         detailObject.getString("permName"),
-                                        detailObject.getString("protectLevel"));
+                                        detailObject.getString("protectLevel"),
+                                        detailObject.getString("perm_id"));
 
                                 permExistList.add(permExist);
 
